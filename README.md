@@ -73,11 +73,3 @@ Your application will be accessible at <http://localhost:5173>
 ✅ **Secure Authentication**  
    - JWT-based login  
 
-## Customization
-
-You can customize the Vite configuration by editing the vite.config.js file. Refer to the [Vite documentation](https://vite.dev/config/) for more details on available configuration options.
-
-## Acknowledgements
-
-- [React](https://react.dev/)
-- [Vite](https://vite.dev/)
