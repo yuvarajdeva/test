@@ -22,7 +22,7 @@ Ensure you have the following installed before proceeding:
   $ cd frontend
   $ npm install or yarn install  
 ```
-3. Run the local development server:
+2. Run the local development server:
 ```bash
   $ npm run dev or yarn dev  
 ```
