@@ -10,7 +10,7 @@ This document provides step-by-step instructions for using the Diana Mission-Con
 2. [Account Creation](#account-creation)
 3. [Device Creation](#device-creation)
 4. [Mission Creation](#mission-creation)
-5. [Map Waypoints Data Creation and Execution](#map-waypoints-data-creation-and-execution)
+5. [Map Waypoints Data Creation](#map-waypoints-data-creation)
 6. [Conditions and Commands](#conditions-and-commands)
 7. [Execute a Mission](#execute-a-mission)
 
@@ -22,10 +22,6 @@ This document provides step-by-step instructions for using the Diana Mission-Con
 3. Click **Login**.
 4. Upon successful login, you will be redirected to the dashboard.
 
-**API Endpoint:**
-```bash
-POST https://api-diana-dev.secublox.com/api/auth/login
-```
 
 ---
 
@@ -77,7 +73,7 @@ POST https://api-diana-dev.secublox.com/api/auth/login
 
 ---
 
-## Map Waypoints Data Creation and Execution
+## Map Waypoints Data Creation
 ### Upload Waypoints Data
 1. Navigate to **Map Settings**.
 2. Click **Create** in Action for particular mission.
@@ -113,7 +109,6 @@ POST https://api-diana-dev.secublox.com/api/auth/login
     - HAGL: 15
     - IED: 0
 
-   
 ### Create a Command
 1. Navigate to **Missions**.
 2. Select a mission and click **Create Command**.
@@ -123,14 +118,17 @@ POST https://api-diana-dev.secublox.com/api/auth/login
    - Mission
    - Device
    - Command
+   - Receiver Device (Visible only if the command data contains "BC_WAYPOINTS", otherwise hidden)
    - Action
    - Parameter
    - Order
 4. Click **Save**.
 
+Note: An image is captured only when image_capture is set to true in BC_WAYPOINTS; otherwise, no image is captured.
+
     Example Data:
 
-    - parameter: { "waypoints": [ { "order": 1, "latitude": 48.70948, "longitude": 11.53796, "hagl" :15, "image_capture" : true }, { "order": 2, "latitude": 48.7125, "longitude": 11.54899, "hagl" :15 }, { "order": 3, "latitude": 48.7144, "longitude": 11.55600, "hagl" :15 }] }
+    - parameter: { "waypoints": [ { "order": 1, "latitude": 48.70948, "longitude": 11.53796, "hagl" :15, image_capture: true }, { "order": 2, "latitude": 48.7125, "longitude": 11.54899, "hagl" :15 }, { "order": 3, "latitude": 48.7144, "longitude": 11.55600, "hagl" :15 }] }
 ---
 
 ## Execute a Mission
@@ -141,3 +139,30 @@ POST https://api-diana-dev.secublox.com/api/auth/login
 
 
 ---
+## Installation and Setup Instructions
+
+
+1. Clone the Repository
+Run the following command to clone the repository:
+```bash
+git clone https://gitlab.com/secublox-platform/DIANA/diana-library.git
+cd diana-library
+```
+2. Install Dependencies
+Navigate to the cloned repository and install required dependencies:
+```bash
+pip3.12 install -r requirements.txt
+```
+3. Run the Script
+Execute the following command to run the script:
+```bash
+python3.12 MissionControlScript/creator_device.py
+```
+
+## Result
+
+In the Image section:
+The captured image details will be displayed.
+Clicking on an image will open a popup with two tabs:
+- Image View (shows the captured image).
+- Metadata Info (displays the metadata details).
