@@ -25,7 +25,7 @@ Ensure you have the following installed before proceeding:
 3. Run the local development server:
 ```bash
 npm run dev  # or yarn dev  
-# Your application will be accessible at <http://localhost:5173>
+Your application will be accessible at http://localhost:5173
 ```
 
 ## 📂 Project Structure
