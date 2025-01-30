@@ -103,11 +103,14 @@ This document provides step-by-step instructions for using the Diana Mission-Con
    - Action
 4. Click **Save**.
 
+'''bash
     Example Data:
-    - Automatic: 1
-    - Delay: 10
-    - HAGL: 15
-    - IED: 0
+
+    Automatic: 1
+    Delay: 10
+    HAGL: 15
+    IED: 0
+'''
 
 ### Create a Command
 1. Navigate to **Missions**.
@@ -128,7 +131,7 @@ Note: An image is captured only when image_capture is set to true in BC_WAYPOINT
 
     Example Data:
 
-    - parameter: { "waypoints": [ { "order": 1, "latitude": 48.70948, "longitude": 11.53796, "hagl" :15, image_capture: true }, { "order": 2, "latitude": 48.7125, "longitude": 11.54899, "hagl" :15 }, { "order": 3, "latitude": 48.7144, "longitude": 11.55600, "hagl" :15 }] }
+    parameter: { "waypoints": [ { "order": 1, "latitude": 48.70948, "longitude": 11.53796, "hagl" :15, image_capture: true }, { "order": 2, "latitude": 48.7125, "longitude": 11.54899, "hagl" :15 }, { "order": 3, "latitude": 48.7144, "longitude": 11.55600, "hagl" :15 }] }
 ---
 
 ## Execute a Mission
