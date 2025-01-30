@@ -53,10 +53,13 @@ Your application will be accessible at <http://localhost:5173>
    - Administrator, Operator, Military  
 
 ✅ **Mission Management**  
-   - Create(Mission, Command, Condition), Execute, and Track(Request)
+   - Create(Mission, Command, Condition and waypoints), Execute, and Track(Request)
 
 ✅ **Device Management**  
-   - Swarm devices, Configuration, and Status updates  
+   - Swarm devices, Configuration, and Status updates
+     
+✅ **Image**  
+   - Captured Image Metadata Info
 
 ✅ **Blockchain Integration**  
    - Smart Contracts, Transactions, and execution  
