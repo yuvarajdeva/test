@@ -103,14 +103,15 @@ This document provides step-by-step instructions for using the Diana Mission-Con
    - Action
 4. Click **Save**.
 
-'''bash
+
+
     Example Data:
 
     Automatic: 1
     Delay: 10
     HAGL: 15
     IED: 0
-'''
+
 
 ### Create a Command
 1. Navigate to **Missions**.
@@ -169,3 +170,7 @@ The captured image details will be displayed.
 Clicking on an image will open a popup with two tabs:
 - Image View (shows the captured image).
 - Metadata Info (displays the metadata details).
+
+
+
+
