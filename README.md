@@ -52,6 +52,9 @@ Your application will be accessible at <http://localhost:5173>
 ✅ **Role-Based Access Control**  
    - Administrator, Operator, Military  
 
+✅ **Account Management**  
+   - Create/Delete Military or Operator account based on the Role-Based Access Control
+
 ✅ **Mission Management**  
    - Create(Mission, Command, Condition and waypoints), Execute, and Track(Request)
 
@@ -59,7 +62,7 @@ Your application will be accessible at <http://localhost:5173>
    - Swarm devices, Configuration, and Status updates
      
 ✅ **Image**  
-   - Captured Image Metadata Info
+   - Captured Image Metadata Info Track
 
 ✅ **Blockchain Integration**  
    - Smart Contracts, Transactions, and execution  
