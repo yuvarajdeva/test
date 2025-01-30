@@ -10,8 +10,9 @@ This document provides step-by-step instructions for using the Diana Mission-Con
 2. [Account Creation](#account-creation)
 3. [Device Creation](#device-creation)
 4. [Mission Creation](#mission-creation)
-5. [Conditions and Commands](#conditions-and-commands)
-6. [Map Waypoints Data Creation and Execution](#map-waypoints-data-creation-and-execution)
+5. [Map Waypoints Data Creation and Execution](#map-waypoints-data-creation-and-execution)
+6. [Conditions and Commands](#conditions-and-commands)
+7. [Execute a Mission](#execute-a-mission)
 
 ---
 
@@ -76,27 +77,19 @@ POST https://api-diana-dev.secublox.com/api/auth/login
 
 ---
 
-## Conditions and Commands
-### Create a Condition
-1. Navigate to **Missions**.
-2. Select a mission and click **Create Condition**.
-3. Fill in the condition details:
-   - Condition Name
-   - Identifier
-   - Mission
-   - Devices
-   - Automatic
-   - Delay
-   - HAGL
-   - IED
-   - Action
-4. Click **Save**.
+## Map Waypoints Data Creation and Execution
+### Upload Waypoints Data
+1. Navigate to **Map Settings**.
+2. Click **Create** in Action for particular mission.
+3. Select a JSON file containing waypoints.
+4. Click **Upload**.
 
-### Create a Command
-1. Navigate to **Missions**.
-2. Select a mission and click **Create Command**.
-3. Enter command details:
-
+### Configure Waypoint Display Settings
+1. Enable/Disable **Show Waypoints**.
+2. Enable/Disable **Show Waypoints Label**.
+3. Select **Map Icon Type**.
+4. Choose **Map Icon Color**.
+5. Click **Save**
 
 ## Conditions and Commands
 ### Create a Condition
@@ -128,21 +121,9 @@ POST https://api-diana-dev.secublox.com/api/auth/login
    - Order
 4. Click **Save**.
 
+---
 
-## Map Waypoints Data Creation and Execution
-### Upload Waypoints Data
-1. Navigate to **Map Settings**.
-2. Click **Upload Waypoints**.
-3. Select a JSON file containing waypoints.
-4. Click **Upload**.
-
-### Configure Waypoint Display Settings
-1. Enable/Disable **Show Waypoints**.
-2. Enable/Disable **Show Waypoints Label**.
-3. Select **Map Icon Type**.
-4. Choose **Map Icon Color**.
-
-### Execute a Mission
+## Execute a Mission
 1. Go to **Missions**.
 2. Select a mission.
 3. Click **Execute Selected Missions**.
