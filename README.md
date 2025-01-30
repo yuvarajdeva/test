@@ -20,11 +20,11 @@ Ensure you have the following installed before proceeding:
 ```bash
   $ git clone https://gitlab.com/secublox-platform/DIANA/frontend.git
   $ cd frontend
-  $ npm install  # or yarn install  
+  $ npm install or yarn install  
 ```
 3. Run the local development server:
 ```bash
-  $ npm run dev  # or yarn dev  
+  $ npm run dev or yarn dev  
 ```
 Your application will be accessible at <http://localhost:5173>
 
