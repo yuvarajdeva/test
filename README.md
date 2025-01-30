@@ -79,5 +79,5 @@ You can customize the Vite configuration by editing the vite.config.js file. Ref
 
 ## Acknowledgements
 
-[React](https://react.dev/)
-[Vite](https://vite.dev/)
+- [React](https://react.dev/)
+- [Vite](https://vite.dev/)
