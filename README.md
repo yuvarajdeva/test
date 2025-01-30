@@ -21,10 +21,8 @@ Ensure you have the following installed before proceeding:
   git clone https://github.com/your-repo/frontend.git  
   cd frontend
   npm install  # or yarn install  
-  Running the Development Server
-  Start the local development environment:
 ```
-2. Run the local development server:
+3. Run the local development server:
 ```bash
 npm run dev  # or yarn dev  
 Your application will be accessible at http://localhost:5173.
