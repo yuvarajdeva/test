@@ -51,12 +51,24 @@ Your application will be accessible at http://localhost:5173.
 ```
 
 ## 🚀 Features
-✅ Role-Based Access Control (Administrator, Operator, Pilot)
-✅ Mission Management (Create, , Execute, and Track)
-✅ Device Management (Swarm devices, Configuration, and Status updates)
-✅ Blockchain Integration (Smart Contracts, Transactions, and Token-based execution)
-✅ Map & Waypoints (Geolocation-based mission planning)
-✅ Secure Authentication (JWT-based login)
+✅ **Role-Based Access Control**  
+   - Administrator, Operator, Pilot  
+
+✅ **Mission Management**  
+   - Create, Execute, and Track  
+
+✅ **Device Management**  
+   - Swarm devices, Configuration, and Status updates  
+
+✅ **Blockchain Integration**  
+   - Smart Contracts, Transactions, and Token-based execution  
+
+✅ **Map & Waypoints**  
+   - Geolocation-based mission planning  
+
+✅ **Secure Authentication**  
+   - JWT-based login  
+
 
 ## 📜 API Endpoints
 The frontend interacts with backend services via the following API endpoints:
