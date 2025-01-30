@@ -142,7 +142,9 @@ Note: An image is captured only when image_capture is set to true in BC_WAYPOINT
 
 
 ---
-## Installation and Setup Instructions
+
+## Run the Test script
+### Installation and Setup Instructions
 
 
 1. Clone the Repository
