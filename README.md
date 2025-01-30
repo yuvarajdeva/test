@@ -1,7 +1,7 @@
 <div align="center">
 
   <p align="center">
-    <h2> 🚀 SecuBlox Frontend </h2>
+    <h2> 🚀 Diana Frontend </h2>
   </p>
   This repository contains the frontend implementation of SecuBlox, a decentralized C2 Mission Management System. Built using React + Vite, it provides a seamless interface for managing missions, devices, and blockchain interactions.
 
