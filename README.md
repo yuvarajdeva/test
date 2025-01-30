@@ -18,14 +18,14 @@ Ensure you have the following installed before proceeding:
 1. Clone the repository and install dependencies:
 
 ```bash
-  git clone https://github.com/your-repo/frontend.git  
+  $ git clone https://gitlab.com/secublox-platform/DIANA/frontend.git
   cd frontend
   npm install  # or yarn install  
 ```
 3. Run the local development server:
 ```bash
 npm run dev  # or yarn dev  
-Your application will be accessible at http://localhost:5173
+# Your application will be accessible at <http://localhost:5173>
 ```
 
 ## 📂 Project Structure
@@ -50,31 +50,21 @@ Your application will be accessible at http://localhost:5173
 
 ## 🚀 Features
 ✅ **Role-Based Access Control**  
-   - Administrator, Operator, Pilot  
+   - Administrator, Operator, Military  
 
 ✅ **Mission Management**  
-   - Create, Execute, and Track  
+   - Create(Mission, Command, Condition), Execute, and Track(Request)
 
 ✅ **Device Management**  
    - Swarm devices, Configuration, and Status updates  
 
 ✅ **Blockchain Integration**  
-   - Smart Contracts, Transactions, and Token-based execution  
+   - Smart Contracts, Transactions, and execution  
 
 ✅ **Map & Waypoints**  
    - Geolocation-based mission planning  
 
 ✅ **Secure Authentication**  
    - JWT-based login  
-
-
-## 📜 API Endpoints
-The frontend interacts with backend services via the following API endpoints:
-
-## Endpoint	Method	Description
-/api/auth/login	POST	User authentication
-/api/missions	GET	Retrieve mission data
-/api/devices	GET	Fetch registered devices
-/api/transactions	POST	Execute blockchain transactions
 
 
