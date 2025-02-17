@@ -1,140 +1,189 @@
-# Diana - Decentralized C2 on Blockchain
 
-## Introduction
 
-This document outlines the key requirements and provides a step-by-step tutorial for the technology demonstrator of Decentralized C2 on Blockchain. It serves as a guide for utilizing the Mission-Control Dashboard, simulating configured devices, and executing predefined missions efficiently.
+# 🚀 AWS Site-to-Site VPN Setup & StrongSwan Configuration
 
-## Technical Description
+This guide provides a **step-by-step setup** for configuring **AWS Site-to-Site VPN** and **StrongSwan VPN** on Ubuntu/macOS for secure access to private AWS resources.
 
-### Overview
-
-- A **web-based dashboard**, built using **Django** and **React**, provides **role-based access** for stakeholders such as Administrators, Operators, and Military personnel. 
-- Integration with a **decentralized network (public blockchain)** using **Solidity smart contracts** ensures transparent mission control and execution.
-
-## Mission-Control Dashboard
-
-The dashboard, along with a backend (database, REST API), facilitates mission management for various stakeholders to configure and execute mission scenarios.
-
-### Key Features
-- **Log in**
-- **Accounts Management**
-- **Devices Management**
-- **Images Handling**
-- **Missions Execution**
-- **Wallets Integration**
-
-### Login Details
-- **Dashboard URL:** [Diana Dev](https://diana-dev.secublox.com)
-- **API Authentication:** [`https://api-diana-dev.secublox.com/api/auth/login`](https://api-diana-dev.secublox.com/api/auth/login)
-
-## User Roles
-
-### 1. **Administrator**
-   - Oversees the platform with full read and write permissions.
-   - Manages deployment and system operations.
-
-### 2. **Operator**
-   - Executes missions and allocates assets (Military, Wallets).
-
-### 3. **Military**
-   - Authorizes assigned devices for approved missions.
-   
-### 4. **Device**
-   - Represents an autonomous unit (Air, Land, Sea, Space, Cyber).
-   - Status monitoring and configuration.
-
-## Account Settings
-
-- View and edit profile information.
-- Change login password.
-- Manage user accounts and roles.
-
-### Features:
-- **Create new accounts**
-- **Assign wallets to user profiles**
-- **Edit/Delete accounts**
-- **Search for accounts**
-
-### Data Fields:
-- Name, Profile, Username, Email, Nation, Domain, Logo, Document, Company, Address, Description, Phone
-
-## Devices Management
-
-Devices form the core of the autonomous swarm system, representing operational units.
-
-### Access Control:
-- **Administrator:** Full access
-- **Operator:** Limited to their own devices
-- **Military:** Can authorize devices for missions
-
-### Features:
-- **Register & Manage Devices**
-- **Assign to missions & Military units**
-- **Edit/Delete/Search devices**
-
-### Data Fields:
-- Device Name, Identifier, Military Assignment, Type, Blockchain, Logo
-
-## Images Handling
-
-Users can capture and securely store images. 
-
-### Image Display Features:
-- **Image View Tab:** Displays captured images
-- **Metadata Tab:** Shows structured metadata
-- **Automatic Update:** Live information updates every 5 seconds
-
-## Missions Execution
-
-Missions integrate all elements of the decentralized C2 system.
-
-### Access Control:
-- **Administrator:** Full access to all missions
-- **Operator:** Limited to their missions
-
-### Features:
-- **Create new missions**
-- **Configure mission parameters**
-- **Assign devices to missions**
-- **Monitor mission status**
-- **Edit/Delete missions**
-
-### Data Fields:
-- Mission Name, Identifier, Devices, Blockchain Network
-
-## Mission Execution
-
-### Steps:
-1. **Select a mission**
-2. **Click 'Execute Selected Missions'**
-3. **Confirm execution in popup**
-
-### Mission Commands:
-- **Define flight paths, waypoints, takeoff, arm/disarm operations**
-- **Executed via smart contract transactions**
-
-## Conditions & Commands
-
-### Conditions:
-- Manage mission-specific delays, HAGL, and IED alerts.
-- **Data Fields:** Condition Name, Identifier, Mission, Devices, Delay, HAGL, IED
-
-### Commands:
-- Control various aspects of the mission.
-- **Data Fields:** Condition Name, Identifier, Mission, Device, Command, Action, Parameters, Order
-
-## Mission Requests & Tracking
-
-- Tracks command transaction details, execution time, contract address status.
-
-## Map Settings
-
-- Displays mission waypoints with labels.
-- Allows JSON-based modifications.
-
-### Features:
-- **Upload waypoints**
-- **Enable/Disable waypoint display**
-- **Customize map icons (type, color)**
+## **📌 Overview**
+- ✅ Create **AWS VPC, Subnets, Route Tables, and VPN Connections**
+- ✅ Configure **StrongSwan VPN Client on Ubuntu/macOS**
+- ✅ Enable **Private AWS EC2 Access via VPN**
+- ✅ Support **Multiple Client Devices on the Same Network**
 
 ---
+
+## **1️⃣ AWS Setup: Create a VPC, Subnets, and Site-to-Site VPN**
+### **🔹 Step 1: Create a VPC**
+1. **Go to AWS Console** → **VPC** → **Your VPCs**.
+2. Click **Create VPC**.
+   - **Name:** `SeculboxPrivateVPC`
+   - **IPv4 CIDR Block:** `10.0.0.0/16`
+3. Click **Create VPC**.
+
+### **🔹 Step 2: Create Subnets**
+1. **Go to AWS Console** → **VPC** → **Subnets**.
+2. Click **Create Public Subnet** (for internet access).
+   - **Name:** `SeculboxPublicSubnet`
+   - **IPv4 CIDR Block:** `10.0.2.0/24`
+3. Add a **Private Subnet** (for EC2 instances).
+   - **Name:** `SeculboxPrivateSubnet`
+   - **IPv4 CIDR Block:** `10.0.1.0/24`
+4. Click **Create Subnet**.
+
+### **🔹 Step 3: Create a Customer Gateway**
+1. **Go to AWS Console** → **VPC** → **Customer Gateways**.
+2. Click **Create Customer Gateway**.
+   - **Name:** `My-CGW`
+   - **Routing:** `Static`
+   - **IP Address:** `<Your Public IP>` (e.g., `217.160.11.18`)
+3. Click **Create Customer Gateway**.
+
+### **🔹 Step 4: Create a Virtual Private Gateway (VGW)**
+1. **Go to AWS Console** → **VPC** → **Virtual Private Gateways**.
+2. Click **Create Virtual Private Gateway**.
+   - **Name:** `My-VGW`
+   - **Autonomous System Number (ASN):** `65000` (default)
+3. Click **Create Virtual Private Gateway**.
+4. Attach **VGW** to your VPC.
+
+### **🔹 Step 5: Create Site-to-Site VPN Connection**
+1. **Go to AWS Console** → **VPC** → **Site-to-Site VPN Connections**.
+2. Click **Create VPN Connection**.
+   - **Name:** `Green-Enclave-VPN`
+   - **Virtual Private Gateway:** `My-VGW`
+   - **Customer Gateway:** `My-CGW`
+   - **Routing Option:** `Static`
+   - **Static Routes:** `192.168.1.0/24` (or your on-prem subnet)
+3. Click **Create VPN Connection**.
+
+### **🔹 Step 6: Create NAT Gateway (Optional)**
+1. **Go to AWS Console** → **VPC** → **NAT Gateways**.
+2. Click **Create NAT Gateway**.
+   - **Subnet:** `SeculboxPublicSubnet`
+   - **Connectivity Type:** `Public`
+   - **Allocate Elastic IP address**
+3. Click **Create NAT Gateway**.
+
+### **🔹 Step 7: Create Route Tables**
+1. **Go to AWS Console** → **VPC** → **Route Tables**.
+2. Create a **NAT Gateway Route Table**:
+   - **Destinations:**
+     - `0.0.0.0/0` → `NAT Gateway`
+     - `10.0.0.0/16` → `Local`
+     - `192.168.1.0/24` → `VGW`
+3. Create another **Route Table** for Internet Gateway:
+   - **Destinations:**
+     - `0.0.0.0/0` → `Internet Gateway`
+     - `10.0.0.0/16` → `Local`
+
+---
+
+## **2️⃣ AWS EC2 Instance Setup (Private Instance via VPN)**
+### **🔹 Step 1: Create a Private EC2 Instance**
+1. **Go to AWS Console** → **EC2** → **Instances** → **Launch Instance**.
+2. **Choose an AMI:** Amazon Linux 2 / Ubuntu.
+3. **VPC:** `SeculboxPrivateVPC`
+4. **Subnet:** `SeculboxPrivateSubnet`
+5. **Auto-assign Public IP:** `Disable`
+6. **Security Group Settings:**
+   - ✅ Allow **SSH (port 22) only from VPN subnet (`192.168.1.0/24`).**
+   - ✅ Allow **internal communication (`10.0.0.0/16`).**
+   - ✅ Allow **ICMP (ping) and UDP (for VPN).**
+7. Click **Launch Instance**.
+
+---
+
+## **3️⃣ StrongSwan VPN Configuration (Ubuntu/macOS)**
+### **🔹 Step 1: Download VPN Configuration**
+1. **Go to AWS Console** → **VPC** → **Site-to-Site VPN Connections**.
+2. **Download Configuration** → Select `StrongSwan`.
+
+### **🔹 Step 2: Install StrongSwan**
+#### **On Ubuntu:**
+```sh
+sudo apt update
+sudo apt install -y strongswan strongswan-pki libcharon-extra-plugins libcharon-extauth-plugins
+```
+#### **On macOS:**
+```sh
+brew install strongswan
+```
+
+### **🔹 Step 3: Configure StrongSwan**
+Create or modify **`/etc/ipsec.conf`** (Ubuntu) or **`/opt/homebrew/etc/ipsec.conf`** (macOS).
+```sh
+sudo nano /etc/ipsec.conf
+```
+Paste the following:
+```conf
+conn aws-vpn-tunnel-1
+    auto=start
+    left=%defaultroute
+    leftid=<Your Public IP>
+    right=<AWS Tunnel IP>
+    type=tunnel
+    leftauth=psk
+    rightauth=psk
+    keyexchange=ikev1
+    ike=aes128-sha1-modp1024
+    esp=aes128-sha1-modp1024
+    dpddelay=10s
+    dpdtimeout=30s
+    dpdaction=restart
+```
+Save & Exit (`CTRL + X`, then `Y`, then `Enter`).
+
+---
+
+### **🔹 Step 4: Start VPN & Verify Connection**
+```sh
+sudo ipsec restart
+sudo ipsec up aws-vpn-tunnel-1
+sudo ipsec statusall
+```
+✅ **If `ESTABLISHED` appears, VPN is working!**
+
+---
+
+## **4️⃣ Multi-PC VPN Access via MacBook**
+If you want **multiple PCs** on the same network to **share VPN access** through a MacBook:
+
+### **🔹 Step 1: Enable Packet Forwarding**
+```sh
+sudo sysctl -w net.inet.ip.forwarding=1
+```
+Make it **permanent**:
+```sh
+sudo nano /etc/sysctl.conf
+```
+Add:
+```sh
+net.inet.ip.forwarding=1
+```
+Save & apply:
+```sh
+sudo sysctl -f /etc/sysctl.conf
+```
+
+### **🔹 Step 2: Route Traffic via MacBook**
+On **client machines** (other PCs), add:
+```sh
+sudo route -n add -net 10.0.0.0/16 192.168.5.142
+```
+(Replace `192.168.5.142` with your **MacBook’s local IP**.)
+
+---
+
+## **🎯 Conclusion**
+- ✅ **AWS Site-to-Site VPN with StrongSwan successfully configured.**
+- ✅ **Private AWS EC2 instances accessible via VPN.**
+- ✅ **MacBook can act as a VPN gateway for multiple devices.**
+
+🚀 **Now, all client machines can securely access AWS private resources via VPN!** 🚀  
+🔹 **Contributions & PRs welcome!** 🛠️
+```
+
+---
+
+🚀 **This README file is formatted for GitHub and includes all setup steps from the PDF!** 🚀  
+Let me know if you need modifications! 🚀
