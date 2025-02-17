@@ -44,7 +44,9 @@ This guide provides a **step-by-step setup** for configuring **AWS Site-to-Site 
    - **Name:** `My-VGW`
    - **Autonomous System Number (ASN):** `65000` (default)
 3. Click **Create Virtual Private Gateway**.
-4. Attach **VGW** to your VPC.
+4. Attach **VGW** to your VPC:
+   - Go to **VPC:** → **Your VPCs:** (SeculboxPrivateVPC)
+   - Select your VPC → Click **Attach to virtual Private Gateway**.
 
 ### **🔹 Step 5: Create Site-to-Site VPN Connection**
 1. **Go to AWS Console** → **VPC** → **Site-to-Site VPN Connections**.
