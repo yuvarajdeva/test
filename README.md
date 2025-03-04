@@ -51,46 +51,46 @@ docker --version
 
 In docker-compose.yaml
 ```sh
--      - "127.0.0.1:8449:8449"
-+      - "0.0.0.0:9090:8449"
+remove      "127.0.0.1:8449:8449"
+add      "0.0.0.0:9090:8449"
 ```
 ```sh
--      - "./config:/home/user/.arbitrum"
--    command: --conf.file /home/user/.arbitrum/nodeConfig.json
-+      - "./config:/home/ubuntu/.arbitrum"
-+    command: --conf.file /home/ubuntu/.arbitrum/nodeConfig.json
+remove      "./config:/home/user/.arbitrum"
+remove    command: --conf.file /home/user/.arbitrum/nodeConfig.json
+add      "./config:/home/ubuntu/.arbitrum"
+add    command: --conf.file /home/ubuntu/.arbitrum/nodeConfig.json
 ```
 ```sh
--      - "./config:/home/user/.arbitrum"
-+      - "./config:/home/ubuntu/.arbitrum"
+remove      "./config:/home/user/.arbitrum"
+add      "./config:/home/ubuntu/.arbitrum"
 ```
 ```sh
--      - "./das-data:/home/user/das-data"
-+      - "./das-data:/home/ubuntu/das-data"
+remove      "./das-data:/home/user/das-data"
+add      "./das-data:/home/ubuntu/das-data"
 ```
 
 In docker-compose/envs/common-frontend.env
 ```sh
--     NEXT_PUBLIC_API_HOST=localhost
-+     NEXT_PUBLIC_API_HOST=10.0.1.73
+remove     NEXT_PUBLIC_API_HOST=localhost
+add     NEXT_PUBLIC_API_HOST=10.0.1.73
 ```
 ```sh
--     NEXT_PUBLIC_STATS_API_HOST=http://localhost:8080
-+     NEXT_PUBLIC_STATS_API_HOST=http://10.0.1.73:8080
+remove     NEXT_PUBLIC_STATS_API_HOST=http://localhost:8080
+add     NEXT_PUBLIC_STATS_API_HOST=http://10.0.1.73:8080
 ```
 ```sh
--NEXT_PUBLIC_APP_HOST=localhost
-+NEXT_PUBLIC_APP_HOST=10.0.1.73
+remove     NEXT_PUBLIC_APP_HOST=localhost
+add     NEXT_PUBLIC_APP_HOST=10.0.1.73
 ```
 ```sh
--NEXT_PUBLIC_VISUALIZE_API_HOST=http://localhost:8081
-+NEXT_PUBLIC_VISUALIZE_API_HOST=http://10.0.1.73:8081
+remove     NEXT_PUBLIC_VISUALIZE_API_HOST=http://localhost:8081
+add     NEXT_PUBLIC_VISUALIZE_API_HOST=http://10.0.1.73:8081
 ```
 
 In docker-compose/services/stats.yml
 Add the command
 ```sh
- - STATS__IGNORE_BLOCKSCOUT_API_ABSENCE=true
+add     STATS__IGNORE_BLOCKSCOUT_API_ABSENCE=true
 ```
 In 
 ## Step 5: Start the Chain
