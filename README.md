@@ -47,52 +47,88 @@ Verify the installation:
 docker --version
 ```
 
-## Step 4: Update the configuration
+# Step 4: Update the Configuration
 
-In docker-compose.yaml
-```sh
-remove      "127.0.0.1:8449:8449"
-add      "0.0.0.0:9090:8449"
-```
-```sh
-remove      "./config:/home/user/.arbitrum"
-remove    command: --conf.file /home/user/.arbitrum/nodeConfig.json
-add      "./config:/home/ubuntu/.arbitrum"
-add    command: --conf.file /home/ubuntu/.arbitrum/nodeConfig.json
-```
-```sh
-remove      "./config:/home/user/.arbitrum"
-add      "./config:/home/ubuntu/.arbitrum"
-```
-```sh
-remove      "./das-data:/home/user/das-data"
-add      "./das-data:/home/ubuntu/das-data"
+## In `docker-compose.yaml`
+
+### Update Port Mapping:
+```yaml
+# Remove:
+"127.0.0.1:8449:8449"
+
+# Add:
+"0.0.0.0:9090:8449"
 ```
 
-In docker-compose/envs/common-frontend.env
-```sh
-remove     NEXT_PUBLIC_API_HOST=localhost
-add     NEXT_PUBLIC_API_HOST=10.0.1.73
-```
-```sh
-remove     NEXT_PUBLIC_STATS_API_HOST=http://localhost:8080
-add     NEXT_PUBLIC_STATS_API_HOST=http://10.0.1.73:8080
-```
-```sh
-remove     NEXT_PUBLIC_APP_HOST=localhost
-add     NEXT_PUBLIC_APP_HOST=10.0.1.73
-```
-```sh
-remove     NEXT_PUBLIC_VISUALIZE_API_HOST=http://localhost:8081
-add     NEXT_PUBLIC_VISUALIZE_API_HOST=http://10.0.1.73:8081
+### Update Configuration Path and Command:
+```yaml
+# Remove:
+"./config:/home/user/.arbitrum"
+command: --conf.file /home/user/.arbitrum/nodeConfig.json
+
+# Add:
+"./config:/home/ubuntu/.arbitrum"
+command: --conf.file /home/ubuntu/.arbitrum/nodeConfig.json
 ```
 
-In docker-compose/services/stats.yml
-Add the command
-```sh
-add     STATS__IGNORE_BLOCKSCOUT_API_ABSENCE=true
+### Update Data Directory Mapping:
+```yaml
+# Remove:
+"./das-data:/home/user/das-data"
+
+# Add:
+"./das-data:/home/ubuntu/das-data"
 ```
-In 
+
+---
+
+## In `docker-compose/envs/common-frontend.env`
+
+### Update API Host:
+```ini
+# Remove:
+NEXT_PUBLIC_API_HOST=localhost
+
+# Add:
+NEXT_PUBLIC_API_HOST=10.0.1.73
+```
+
+### Update Stats API Host:
+```ini
+# Remove:
+NEXT_PUBLIC_STATS_API_HOST=http://localhost:8080
+
+# Add:
+NEXT_PUBLIC_STATS_API_HOST=http://10.0.1.73:8080
+```
+
+### Update App Host:
+```ini
+# Remove:
+NEXT_PUBLIC_APP_HOST=localhost
+
+# Add:
+NEXT_PUBLIC_APP_HOST=10.0.1.73
+```
+
+### Update Visualize API Host:
+```ini
+# Remove:
+NEXT_PUBLIC_VISUALIZE_API_HOST=http://localhost:8081
+
+# Add:
+NEXT_PUBLIC_VISUALIZE_API_HOST=http://10.0.1.73:8081
+```
+
+---
+
+## In `docker-compose/services/stats.yml`
+
+### Add the following command:
+```yaml
+STATS__IGNORE_BLOCKSCOUT_API_ABSENCE=true
+```
+
 ## Step 5: Start the Chain
 Start the Orbit node with the following command:
 ```sh
