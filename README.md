@@ -12,7 +12,7 @@ Before starting, ensure you have the following:
 - Access to an L2 chain (e.g., Arbitrum Sepolia)
 
 ## Step 1: Launch Your Orbit Chain
-1. Visit [Arbitrum Orbit](https://arbitrum.io/).
+1. Visit [Arbitrum Orbit](https://arbitrum.io/orbit).
 2. Click **Launch a Chain**.
 3. Select **Launch on Testnet**, then click **Next**.
 4. Choose Chain Type (e.g., Rollup).
@@ -36,10 +36,67 @@ Before starting, ensure you have the following:
    yarn install
    ```
 
-## Step 3: Start the Chain
+## Step 3: Install Docker
+Ensure that Docker is installed on your system. If not, install it using the following command:
+```sh
+sudo apt update
+sudo apt install -y docker.io
+```
+Verify the installation:
+```sh
+docker --version
+```
+
+## Step 4: Update the configuration
+
+In docker-compose.yaml
+```sh
+-      - "127.0.0.1:8449:8449"
++      - "0.0.0.0:9090:8449"
+```
+```sh
+-      - "./config:/home/user/.arbitrum"
+-    command: --conf.file /home/user/.arbitrum/nodeConfig.json
++      - "./config:/home/ubuntu/.arbitrum"
++    command: --conf.file /home/ubuntu/.arbitrum/nodeConfig.json
+```
+```sh
+-      - "./config:/home/user/.arbitrum"
++      - "./config:/home/ubuntu/.arbitrum"
+```
+```sh
+-      - "./das-data:/home/user/das-data"
++      - "./das-data:/home/ubuntu/das-data"
+```
+
+In docker-compose/envs/common-frontend.env
+```sh
+-     NEXT_PUBLIC_API_HOST=localhost
++     NEXT_PUBLIC_API_HOST=10.0.1.73
+```
+```sh
+-     NEXT_PUBLIC_STATS_API_HOST=http://localhost:8080
++     NEXT_PUBLIC_STATS_API_HOST=http://10.0.1.73:8080
+```
+```sh
+-NEXT_PUBLIC_APP_HOST=localhost
++NEXT_PUBLIC_APP_HOST=10.0.1.73
+```
+```sh
+-NEXT_PUBLIC_VISUALIZE_API_HOST=http://localhost:8081
++NEXT_PUBLIC_VISUALIZE_API_HOST=http://10.0.1.73:8081
+```
+
+In docker-compose/services/stats.yml
+Add the command
+```sh
+ - STATS__IGNORE_BLOCKSCOUT_API_ABSENCE=true
+```
+In 
+## Step 5: Start the Chain
 Start the Orbit node with the following command:
 ```sh
-yarn start
+docker compose up -d
 ```
 The chain will now be running locally.
 
@@ -53,7 +110,7 @@ http://localhost/
 http://localhost:8449
 ```
 
-## Step 4: Final Configuration & Setup
+## Step 5: Final Configuration & Setup
 1. Fund the batch-poster and validator (staker) accounts on your underlying L2 chain.
 2. Deposit ETH into your account on the chain using your chain's newly deployed bridge.
 3. Deploy your Token Bridge contracts on both L2 and local Orbit chains.
@@ -81,24 +138,15 @@ To run a full node for an Orbit chain, ensure that your system meets the followi
 - **Storage:** Minimum 1.2 TB SSD (depends on the Orbit chain and its traffic over time)
 
 ### Installation and Setup
-#### Step 1: Install Docker
-Ensure that Docker is installed on your system. If not, install it using the following command:
-```sh
-sudo apt update
-sudo apt install -y docker.io
-```
-Verify the installation:
-```sh
-docker --version
-```
 
-#### Step 2: Update Parent Chain Connection URL
+
+#### Step 1: Update Parent Chain Connection URL
 Modify the connection URL to the parent chain:
 ```sh
 --parent-chain.connection.url=https://sepolia-rollup.arbitrum.io/rpc
 ```
 
-#### Step 3: Configure Child Chain Parameters
+#### Step 2: Configure Child Chain Parameters
 ##### 1. Update `nodeConfig.json`
 - Obtain `nodeConfig.json` from the L3 blockchain deployment process.
 - Inside the JSON file, locate the `info-json`.
@@ -130,7 +178,7 @@ Example:
 --node.feed.input.url=http://localhost:8449
 ```
 
-#### Step 4: Run the Full Node with Docker
+#### Step 3: Run the Full Node with Docker
 When running the Docker image, an external volume should be mounted to persist the database across restarts. The mount point inside the Docker image should be `/home/user/.arbitrum`.
 
 Run the following command to start the full node:
