@@ -2,7 +2,7 @@
 **File Path:** `src/masterDocument.md`
 
 ## 1. Arbitrum Orbit L3 Chain Setup Guide
-**File Path:** `src/doc/BlockchainNode.md`
+**File Path:** [`src/doc/BlockchainNode.md`](src/doc/BlockchainNode.md)
 
 ### Overview
 This section provides step-by-step instructions for deploying an Arbitrum Orbit Layer 3 (L3) chain using the official Orbit setup script.
